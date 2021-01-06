@@ -39,13 +39,18 @@ public class Vertex {
 	 */
 	private boolean visited;
 	
+
 	List<Edge> inEdges = new ArrayList<>();
+	
+
 	List<Edge> outEdges = new ArrayList<>();
 	
+	@JsonIgnore
 	public List<Edge> getInEdges(){
 		return inEdges;
 	};
 	
+	@JsonIgnore
 	public List<Edge> getOutEdges(){
 		return outEdges;
 	};

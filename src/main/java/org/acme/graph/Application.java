@@ -1,5 +1,6 @@
 package org.acme.graph;
 
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
@@ -25,7 +26,8 @@ public class Application {
 		 * Démarrage classique d'une application spring modifié pour faciliter le
 		 * chargement des ressources à partir du jar
 		 */
-		// SpringApplication.run(Application.class, args);
+        System.setProperty("spring.jackson.serialization.INDENT_OUTPUT", "true");
+		SpringApplication.run(Application.class, args);
 
 		/*
 		 * Permet d'accéder facilement aux resources en mode jar
