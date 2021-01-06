@@ -83,7 +83,7 @@ public class Graph {
 	
 	public Edge createEdge(Vertex source, Vertex target) {
 		Edge edge = new Edge(source,target);
-		edges.add(edge;
+		edges.add(edge);
 		return edge;
 	};
 

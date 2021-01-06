@@ -42,11 +42,16 @@ public class XmlGraphReader {
 			XPath xpath = XPath.newInstance("./vertices/vertex");
 			for (Object node : xpath.selectNodes(root)) {
 				Element vertexElement = (Element) node;
-				Vertex vertex = new Vertex();
-				vertex.setId(vertexElement.getAttribute("id").getValue());
-				vertex.setCoordinate(new Coordinate(Double.valueOf(vertexElement.getAttribute("x").getValue()),
-						Double.valueOf(vertexElement.getAttribute("y").getValue())));
-				graph.getVertices().add(vertex);
+				
+				Coordinate coordinate = new Coordinate(Double.valueOf(vertexElement.getAttribute("x").getValue()),
+						Double.valueOf(vertexElement.getAttribute("y").getValue()));
+				
+				Vertex vertex = graph.createVertex(coordinate, vertexElement.getAttribute("id").getValue());
+				
+//				vertex.setId(vertexElement.getAttribute("id").getValue());
+//				vertex.setCoordinate(new Coordinate(Double.valueOf(vertexElement.getAttribute("x").getValue()),
+//						Double.valueOf(vertexElement.getAttribute("y").getValue())));
+//				graph.getVertices().add(vertex);
 			}
 		}
 
@@ -55,16 +60,18 @@ public class XmlGraphReader {
 			XPath xpath = XPath.newInstance("./edges/edge");
 			for (Object node : xpath.selectNodes(root)) {
 				Element edgeElement = (Element) node;
-				Edge edge = new Edge();
+				
+				
+				String sourceId = edgeElement.getAttribute("source").getValue();
+				Vertex source = graph.findVertex(sourceId);
+				
+				String targetId = edgeElement.getAttribute("target").getValue();
+				Vertex target = graph.findVertex(targetId);
+				
+				Edge edge = graph.createEdge(source, target);
 				edge.setId(edgeElement.getAttribute("id").getValue());
 
-				String sourceId = edgeElement.getAttribute("source").getValue();
-				edge.setSource(graph.findVertex(sourceId));
-
-				String targetId = edgeElement.getAttribute("target").getValue();
-				edge.setTarget(graph.findVertex(targetId));
-
-				graph.getEdges().add(edge);
+//				graph.getEdges().add(edge);
 			}
 		}
 
