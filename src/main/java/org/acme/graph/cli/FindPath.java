@@ -45,6 +45,7 @@ public class FindPath {
 		}
 
 		DijkstraPathFinder pathFinder = new DijkstraPathFinder(graph);
+		
 		Path pathEdges = pathFinder.findPath(source, target);
 		if (pathEdges == null) {
 			System.err.println("path not found");
