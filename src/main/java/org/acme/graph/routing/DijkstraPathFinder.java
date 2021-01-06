@@ -2,7 +2,9 @@ package org.acme.graph.routing;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.acme.graph.model.Edge;
 import org.acme.graph.model.Graph;
@@ -23,6 +25,8 @@ public class DijkstraPathFinder {
 	private static final Logger log = LogManager.getLogger(DijkstraPathFinder.class);
 
 	private Graph graph;
+	
+	private Map <Vertex, PathNode> nodes = new HashMap<Vertex, PathNode>();
 
 	public DijkstraPathFinder(Graph graph) {
 		this.graph = graph;
